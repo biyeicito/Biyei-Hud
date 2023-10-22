@@ -1,0 +1,809 @@
+﻿*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+@font-face {
+    font-family: MazzardH;
+    src: url("font/MazzardH-ExtraBold.otf") format("opentype");
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+body {
+    /*background: url('https://i.imgur.com/MoYBh1e.jpg') center center no-repeat; background-size: cover;*/
+}
+
+#ui {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+div.separator {
+    display: block;
+    clear: both;
+    width: 100%;
+}
+
+
+
+
+.icon {
+    display: block;
+    position: relative;
+    padding: 10px 8px;
+    margin: 10px 5px 0 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.548);
+}
+
+#status .icon {
+    width: 25px;
+    height: 25px;
+}
+
+.icon i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    z-index: 11;
+    font-size: 15px;
+}
+
+.icon img {
+    width: 16px;
+    margin: -3px 0 0 0;
+}
+
+.icon span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    width: 100%;
+    height: 100%;
+}
+
+.icon.text {
+    display: inline-block;
+    overflow: visible;
+    width: auto;
+    padding: 0;
+}
+
+.icon.text i {
+    display: inline-block;
+    float: left;
+    transform: translate(0%, 0%);
+    left: 0;
+    top: 0;
+    position: relative;
+    padding: 10px 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    color: #FFF;
+}
+
+.icon.text i:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon.text span {
+    position: relative;
+    width: auto;
+    height: auto;
+    left: 0;
+    transform: translate(0, 0);
+    display: inline-block;
+    font-size: 12px;
+    padding: 7px 10px 0 2px;
+    font-weight: 700;
+    color: #FFF;
+}
+
+
+.icon.dying:not(.customstatus) span {
+    animation: trew-status-blink 500ms infinite;
+}
+
+.icon.pulse i {
+    animation: trew-pulse 500ms 1;
+}
+
+
+
+
+.info {
+    position: absolute;
+}
+
+.info.server {
+    top: 20px;
+    right: 26px;
+    width: 90px;
+    height: 90px;
+}
+
+.info.server #server img {
+    max-width: 100%;
+    opacity: 0.75;
+}
+
+.info.player {
+    top: 110px;
+    right: 25px;
+    text-align: right;
+}
+
+.info.player #job span {
+    font-size: 17px;
+    color: #FFF;
+    font-weight: 900;
+    text-transform: uppercase;
+    /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.75); */
+    text-shadow: -1px 1px 13px rgba(0, 0, 0, 0.897);
+}
+
+
+
+
+
+.info.player #money div[id] {
+    float: right;
+}
+
+.info.player #money {
+    clear: both;
+}
+
+.info.player #money #wallet i {
+    color: #53ff6f;
+
+}
+
+.info.player #money #blackMoney i {
+    color: #ff2d2d;
+}
+
+.info.player #money #bank i {
+    color: #51a2ff;
+}
+
+.info.player #money #coins i {
+    color: #ff06c9;
+}
+
+.info.player #money #idcard i {
+    color: #9d22d6;
+}
+
+
+
+/*.info.player #money #wallet i:before  { content: '\f153';  }*/
+
+
+@keyframes slide {
+    from {
+        left: 10px;
+    }
+    to {
+        left: 16%;
+    }
+}
+
+@keyframes slideBack {
+    from {
+        left: 16%;
+    }
+    to {
+        left: 10px;
+    }
+}
+
+
+
+
+#status {
+    position: absolute;
+    bottom: 3.5%;
+    /* left: 10px; */
+}
+
+.isInCar {
+    animation: slide 0.5s ease;
+    animation-fill-mode: forwards; /* Mantener el último estado de la animación */
+}
+
+.isNotCar {
+    animation: slideBack 0.5s ease;
+    animation-fill-mode: forwards; /* Mantener el último estado de la animación */
+}
+
+
+#status {
+    clear: both;
+}
+
+#status ul {
+    margin: 10px 0 0 0;
+}
+
+/* #status ul li {
+    float: right;
+} */
+
+#status ul li#health span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+#status ul li#armor span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+#status ul li#stamina span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+#status ul li#hunger span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+#status ul li#thirst span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+#status ul li#health.dead {
+    animation: trew-pulse 500ms infinite;
+}
+
+#status ul li#health.dead span {
+    height: 0 !important;
+}
+
+#status ul li#health.dead i.fas:before {
+    content: '\f714';
+}
+
+.info.vehicle {
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 11;
+}
+
+.info.vehicle.active {
+    opacity: 1;
+}
+
+.info.vehicle.inactive {
+    opacity: 0;
+}
+
+
+.info.vehicle #speedometer {
+    position: relative;
+    width: 270px;
+    height: 130px;
+}
+
+.info.vehicle #speedometer svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(138deg);
+    width: 130px;
+}
+
+.info.vehicle #speedometer svg circle {
+    display: block;
+    fill: transparent;
+    stroke-width: 5px;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 75;
+    transform-origin: 50% 50%;
+}
+
+.info.vehicle #speedometer svg circle.mask {
+    stroke: rgba(0, 0, 0, 0.35);
+}
+
+.info.vehicle #speedometer svg circle.speed {
+    stroke: url(#speed-gradient);
+    stroke-dashoffset: 180;
+}
+
+.info.vehicle #speedometer svg:first-child {
+    z-index: 11;
+}
+
+
+.info.vehicle #speedometer svg circle {
+    transition: all 250ms linear;
+}
+
+.info.vehicle #speedometer svg circle.zero {
+    stroke: #7200a7;
+    stroke-dashoffset: 235;
+}
+
+.info.vehicle #speedometer svg circle.twentyfive {
+    stroke: #7200a7;
+    stroke-dashoffset: 180;
+}
+
+.info.vehicle #speedometer svg circle.fifty {
+    stroke: #7200a7;
+    stroke-dashoffset: 125;
+}
+
+.info.vehicle #speedometer svg circle.seventyfive {
+    stroke: #7200a7;
+    stroke-dashoffset: 75;
+}
+
+
+.info.vehicle #speedometer #vehicle-speed {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #FFF;
+}
+
+.info.vehicle #speedometer #vehicle-speed span {
+    display: block;
+    font-weight: 900;
+    font-size: 30px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+.info.vehicle #speedometer #vehicle-speed strong {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 100px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+    transition: all 150ms linear;
+}
+
+.info.vehicle #speedometer #vehicle-speed strong.on {
+    background: #18b70b;
+}
+
+.info.vehicle #speedometer #vehicle-gear,
+.info.vehicle #speedometer #vehicle-others {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 69px;
+    transform: translate(-50%, 0);
+    margin: auto;
+    border: 2px solid transparent;
+}
+
+.info.vehicle #speedometer #vehicle-gear.pulsing {
+    animation: trew-siren 1s infinite;
+}
+
+.info.vehicle #speedometer #vehicle-gear i {
+    top: -2px;
+}
+
+.info.vehicle #speedometer #vehicle-gear span {
+    padding: 5px 15px 0 10px;
+}
+
+
+.info.vehicle #speedometer #vehicle-status-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.info.vehicle #speedometer #vehicle-status-left ul li {
+    float: left;
+}
+
+.info.vehicle #speedometer #vehicle-status-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.info.vehicle #speedometer #vehicle-status-right ul li {
+    float: left;
+}
+
+.info.vehicle #speedometer li#seatbelt span {
+    background: linear-gradient(180deg, #0000008a 0%, #0000008a 100%);
+}
+
+.info.vehicle #speedometer li#seatbelt.on span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+.info.vehicle #speedometer li#fuel span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+.info.vehicle #speedometer li#lights.normal span,
+.info.vehicle #speedometer li#lights.high span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+}
+
+.info.vehicle #speedometer li#signals.dying span {
+    background: linear-gradient(180deg, #7200a7 0%, #7200a7 100%);
+    animation: trew-status-blink 750ms infinite;
+}
+
+
+
+
+
+
+
+
+.info.weapon {
+    bottom: 85px;
+    right: 25px;
+}
+
+.info.weapon.armed {
+    display: block;
+    opacity: 1;
+}
+
+.info.weapon.unarmed {
+    display: none;
+    opacity: 0;
+}
+
+.info.weapon #weapon_image {
+    float: left;
+    width: 200px;
+    height: 40px;
+    text-align: left;
+    position: relative;
+}
+
+.info.weapon #weapon_image img {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    height: 40px;
+}
+
+.info.weapon #weapon_bullets {
+    color: #FFF;
+    float: left;
+    width: 35px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+    line-height: 1;
+}
+
+.info.weapon #weapon_bullets .clip {
+    font-weight: 900;
+    font-size: 22px;
+}
+
+.info.weapon #weapon_bullets .ammo {
+    font-weight: 700;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+
+.info.weapon #bullets {
+    margin: 0;
+    float: left;
+    margin: 5px 0 0 1px;
+    overflow: visible;
+    transform: scale(1.1);
+}
+
+.info.weapon #bullets i {
+    color: #FFF;
+    float: right;
+    height: 34px;
+    width: 34px;
+    border-radius: 100px;
+}
+
+.info.weapon #bullets i.clone {
+    background: none;
+    position: absolute;
+    float: none;
+    top: 15px;
+    left: inherit;
+    left: 10px;
+    opacity: 0;
+}
+
+.info.weapon #bullets.shooting i.clone {
+    animation: trew-bullets 250ms 1;
+}
+
+.info.weapon #bullets i img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+}
+
+
+
+
+
+
+.info.radio {
+    bottom: 19px;
+    right: 25px;
+    z-index: 11;
+}
+
+#zonasegura {
+    position: absolute;
+    right: 0;
+    bottom: 90px;
+
+}
+
+
+.info.radio #voice {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #0000009c;
+    color: #7200a7;
+    text-align: center;
+    padding: 7px 0 0 0;
+    transition: all 0.1s linear;
+}
+
+.info.radio #voice.whisper {
+    background: #47330069;
+}
+
+.info.radio #voice.normal {
+    background: #0000009c;
+}
+
+.info.radio #voice.shout {
+    background: #5c00007e;
+}
+
+.info.radio #voice i.fas {
+    font-size: 14px;
+    color: #ee63f3;
+}
+
+.info.radio #voice.speak {
+    animation: trew-soundwave 1s infinite;
+}
+
+.info.time-and-place {
+    position: absolute;
+    bottom: 18px;
+    right: 65px;
+    height: 38px;
+    font-size: 11px;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 100px;
+    text-align: right;
+}
+
+.info.time-and-place .data {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.info.time-and-place .data div {
+    padding: 0 25px;
+}
+
+
+
+@keyframes trew-siren {
+    0% {
+        border-color: rgba(255, 0, 0, 0);
+        box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0);
+    }
+
+    50% {
+        border-color: rgba(255, 0, 0, 1);
+        box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0.50);
+    }
+
+    100% {
+        border-color: rgba(255, 0, 0, 0);
+        box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0);
+    }
+}
+
+@keyframes trew-soundwave {
+    0% {
+        box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.75);
+    }
+
+    100% {
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes trew-status-blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes trew-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes trew-speed {
+    0% {
+        stroke-dashoffset: 280;
+    }
+
+    50% {
+        stroke-dashoffset: 75;
+    }
+
+    100% {
+        stroke-dashoffset: 280;
+    }
+}
+
+@keyframes trew-bullets {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(30px, -60px) rotate(90deg);
+        opacity: 0;
+    }
+}
+
+@keyframes trew-rainbow {
+
+    100%,
+    0% {
+        background: rgba(255, 0, 0, 0.70);
+    }
+
+    8% {
+        background: rgba(255, 127, 0, 0.70);
+    }
+
+    16% {
+        background: rgba(230, 205, 23, 0.70);
+    }
+
+    25% {
+        background: rgba(127, 255, 0, 0.70);
+    }
+
+    33% {
+        background: rgba(0, 255, 0, 0.70);
+    }
+
+    41% {
+        background: rgba(0, 255, 127, 0.70);
+    }
+
+    50% {
+        background: rgba(0, 255, 255, 0.70);
+    }
+
+    58% {
+        background: rgba(0, 127, 255, 0.70);
+    }
+
+    66% {
+        background: rgba(0, 0, 255, 0.70);
+    }
+
+    75% {
+        background: rgba(127, 0, 255, 0.70);
+    }
+
+    83% {
+        background: rgba(255, 0, 255, 0.70);
+    }
+
+    91% {
+        background: rgba(255, 0, 127, 0.70);
+    }
+}
+
+.header {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    bottom: 8.0vw;
+    right: 1.4vw;
+    color: rgb(255, 255, 255);
+    font-size: 7px;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 3px rgb(0, 0, 0), 0 0 0.2em rgb(255, 0, 0);
+}
+
+li {
+    background-color: #000000bd;
+    padding: 4px 10px 4px 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    -webkit-box-shadow:0px 0px 11px 0px rgba(199,4,170,1);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(199,4,170,1);
+    box-shadow: 0px 0px 11px 0px rgba(199,4,170,1);
+}
+
+i {
+    font-size: 11px;
+    color: rgba(199,4,170,1);
+}
