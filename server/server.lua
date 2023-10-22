@@ -37,21 +37,24 @@ AddEventHandler('onResourceStart', function(resource)
 end)
 
 function AddPlayerToScoreboard(xPlayer, update)
-    local playerId = xPlayer.source
+    if xPlayer ~= nil then
+        local playerId = xPlayer.source
 
-    local identifier = GetPlayerIdentifiers(playerId)[1]
-    local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @identifier", {
-        ['@identifier'] = identifier
-    })
-
-    connectedPlayers[playerId] = {}
-    connectedPlayers[playerId].id = playerId
-    connectedPlayers[playerId].job = xPlayer.job.name
-    connectedPlayers[playerId].jobLabel = xPlayer.job.label
-
-    if update then
-        TriggerClientEvent('esx_onlinejob:updateConnectedPlayers', -1, connectedPlayers)
+        local identifier = GetPlayerIdentifiers(playerId)[1]
+        local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @identifier", {
+            ['@identifier'] = identifier
+        })
+    
+        connectedPlayers[playerId] = {}
+        connectedPlayers[playerId].id = playerId
+        connectedPlayers[playerId].job = xPlayer.job.name
+        connectedPlayers[playerId].jobLabel = xPlayer.job.label
+    
+        if update then
+            TriggerClientEvent('esx_onlinejob:updateConnectedPlayers', -1, connectedPlayers)
+        end
     end
+    
 end
 
 function AddPlayersToScoreboard()
