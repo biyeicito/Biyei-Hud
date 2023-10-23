@@ -204,7 +204,6 @@ Citizen.CreateThread(function()
     local isPauseMenu = false
 
     while true do
-        
         sleep = 300
         if IsPauseMenuActive() then -- ESC Key
             if not isPauseMenu then
@@ -485,6 +484,8 @@ Citizen.CreateThread(function()
         if showPlayerStatus > 0 then
             SendNUIMessage(playerStatus)
         end
+
+        ESX.PlayerData = ESX.GetPlayerData()
 
         if ESX.PlayerData.job then
             local job
