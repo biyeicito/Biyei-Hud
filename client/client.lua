@@ -298,12 +298,16 @@ Citizen.CreateThread(function()
         local vehicleIsOn = GetIsVehicleEngineRunning(vehicle)
         local vehicleInfo
 
-        if IsPedInAnyVehicle(player, false) then
-            DisplayRadar(true)
+        if not showMinimap then
+            if IsPedInAnyVehicle(player, false) then
+                DisplayRadar(true)
+            else
+                DisplayRadar(false)
+            end
         else
-            DisplayRadar(false)
+            DisplayRadar(true)
         end
-
+        
         if IsPedInAnyVehicle(player, false) and vehicleIsOn then
             local vehicleClass = GetVehicleClass(vehicle)
 
